@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="app" class="container">
+
+    <div name="commandBar" class="section">
+      <a class="waves-effect waves-light btn" @click="checkedData.length>0 ? selectNone() : selectAll()">
+        <i class="material-icons">{{ selectButtonStyle }}</i>
+      </a>
+      <a class="waves-effect waves-light btn red" @click="deleteItems" v-show="checkedData.length>0">
+        <i class="material-icons left">delete</i>{{checkedData.length}}</a>
+
+      <ul class="pagination" style="display:inline-block;margin:0">
+        <li v-bind:class="{'waves-effect': pageNumber > 0, 'disabled': pageNumber === 0}">
+          <a @click="prevPage" :disabled="true">
+            <i class="material-icons">chevron_left</i>
+          </a>
+        </li>
+        <li>
+          <a>{{ (pageNumber*size+1) + '-' + (pageNumber*size + paginatedData.length) }} of {{items.length}}</a>
+        </li>
+        <li v-bind:class="{'waves-effect': pageNumber < pageCount-1, 'disabled': pageNumber >= pageCount-1}">
+          <a @click="nextPage">
+            <i class="material-icons">chevron_right</i>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div name="content">
+      <table class="highlight">
+        <list-item v-for="item in paginatedData" v-bind:item="item" v-bind:key="item.id"></list-item>
+      </table>
+    </div>
+
+    <div name="addButton" class="fixed-action-btn">
+      <a @click="addItem" class="btn-floating">
+        <i class="large material-icons">add</i>
+      </a>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+
+</body>
+
+</html>
