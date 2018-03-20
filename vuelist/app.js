@@ -40,7 +40,9 @@ var app = new Vue({
 
   computed: {
     paginatedData: function () {
-      const start = this.pageNumber * this.size,
+      if (this.pageNumber == this.pageCount) { this.pageNumber--}
+      const
+        start = this.pageNumber * this.size,
         end = start + this.size;
       return this.items.slice(start, end);
     },

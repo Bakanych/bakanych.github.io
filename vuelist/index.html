@@ -27,7 +27,7 @@
 
       <ul class="pagination" style="display:inline-block;margin:0">
         <li v-bind:class="{'waves-effect': pageNumber > 0, 'disabled': pageNumber === 0}">
-          <a @click="prevPage" :disabled="true">
+          <a @click="prevPage">
             <i class="material-icons">chevron_left</i>
           </a>
         </li>
