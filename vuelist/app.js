@@ -18,15 +18,22 @@ for (var i = 0; i < 100; i++) {
 };
 
 
-Vue.component('list-item', {
-  props: ['item'],
+Vue.component('custom-list', {
+  props: {
+    itemArray:{
+      type: Array,
+      required: true
+    }
+  },
   template: `
-  <tr>
-    <td>
-      <input :id="item.id" type="checkbox" v-model="item.checked" class="filled-in">
-      <label :for="item.id">{{ item.name }}</label></td>
-    <td>{{item.subject}}</td>
-  </tr>`
+  <table class="highlight"><tbody>
+    <tr v-for="item in itemArray" v-bind:item="item" v-bind:key="item.id">
+      <td>
+        <input :id="item.id" type="checkbox" v-model="item.checked" class="filled-in">
+        <label :for="item.id">{{ item.name }}</label></td>
+      <td>{{item.subject}}</td>
+    </tr>
+    </tbody></table>`
 })
 
 var app = new Vue({

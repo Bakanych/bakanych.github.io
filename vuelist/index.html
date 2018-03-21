@@ -43,9 +43,7 @@
     </div>
 
     <div name="content">
-      <table class="highlight">
-        <list-item v-for="item in paginatedData" v-bind:item="item" v-bind:key="item.id"></list-item>
-      </table>
+      <custom-list :item-array="paginatedData" />
     </div>
 
     <div name="addButton" class="fixed-action-btn">
